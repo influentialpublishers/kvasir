@@ -1,2 +1,2 @@
-# pantheon
-Your palace of domain gods
+# kvasir
+Inspirational models for your domain.
