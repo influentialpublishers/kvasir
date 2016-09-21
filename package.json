@@ -40,7 +40,9 @@
       "templateStrings": true
     }
   },
-  "dependencies": {},
+  "dependencies": {
+    "must": "^0.13.2"
+  },
   "devDependencies": {
     "chai": "^3.5.0",
     "istanbul": "^0.4.4",
