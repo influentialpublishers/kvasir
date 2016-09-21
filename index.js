@@ -2,33 +2,68 @@
 const R         = require('ramda');
 
 
-const find = R.curry((name, driver, terms) => driver.find(name, terms));
+const callDriverMethod = R.curry((method, bucket, driver, request) =>
+    driver[method](bucket, request)
+)
 
 
-const findOne = R.curry((name, driver, terms) => driver.findOne(name, terms));
+const METHODS = [
+
+// Driver -> Record -> Promise Id
+  'insert'
+
+// Driver -> KeyList -> Record -> Promise Id
+, 'upsert'
+
+// Driver -> Id -> Record -> Promise Id
+, 'update'
+
+// Driver -> Projection -> Promise Array Record
+, 'projectAll'
+
+// Driver -> Projection -> Property -> Value -> Promise Array Record
+, 'findBy'
+
+// Driver -> Projection -> Property -> Value -> Promise Record
+, 'findOneBy'
+
+// Driver -> PredicateDictionary -> Promise Array Record
+, 'findWhere'
+
+// Driver -> () -> Promise Array Record
+, 'getAll'
+
+// Driver -> String -> Promise Record
+, 'getById' 
+];
 
 
-const findById = R.curry((name, driver, id) => driver.findById(name, id));
+/**
+ * This factory will create a KVasir object with the methods above.
+ * Each method expects slightly different parameters, however they
+ * all expect that a `Driver` object be passed as the first parameter.
+ * The factory method also expects a `bucket` string that defines the
+ * storage bucket (table, repository, etc...) where the domain's data
+ * may be found.
+ */
+const BaseFactory = (bucket) => R.compose(
+  R.fromPairs
+, R.map((method) => [ method, callDriverMethod(method, bucket) ])
+)(METHODS)
 
 
-const update = (name, driver, request, current) =>
-  driver.update(name, request, current);
+const Factory = (bucket, constructor) => {
+
+  const base_factory = BaseFactory(bucket)
+  const your_factory = constructor(base_factory, bucket)
+
+  return R.merge(base_factory, your_factory)
+
+}
 
 
-const insert = (name, driver, request) => driver.create(name, request);
+Factory.Base        = BaseFactory
+Factory.METHOD_LIST = METHODS
 
 
-// save :: String -> Driver -> Request -> Current -> Model
-const save = R.curry((name, driver, request, current = null) =>
-  R.isNil(current) ?
-    insert(name, driver, request) :
-    update(name, driver, request, current)
-);
-
-
-module.exports = R.curry((name, driver) => ({
-  find     : find(name, driver)
-, findOne  : findOne(name, driver)
-, findById : findById(name, driver)
-, save     : save(name, driver)
-}));
+module.exports      = Factory
