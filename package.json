@@ -1,0 +1,52 @@
+{
+  "name": "kvasir",
+  "version": "0.0.1",
+  "description": "Inspirational models for your domain.",
+  "main": "index.js",
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/influentialpublishers/kvasir.git"
+  },
+  "keywords": [
+    "domain",
+    "model",
+    "mvc"
+  ],
+  "author": "Nathan A Sculli <nsculli@influential.co>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/influentialpublishers/kvasir/issues"
+  },
+  "homepage": "https://github.com/influentialpublishers/kvasir#readme",
+  "eslintConfig": {
+    "extends": "eslint:recommended",
+    "parserOptions": {
+      "ecmaVersion": 6,
+      "sourceType": "module",
+      "ecmaFeatures": {}
+    },
+    "env": {
+      "node": true
+    },
+    "ecmaFeatures": {
+      "arrowFunctions": true,
+      "blockBindings": true,
+      "defaultParams": true,
+      "destructuring": true,
+      "spread": true,
+      "templateStrings": true
+    }
+  },
+  "dependencies": {
+    "awesomize": "^0.1.11"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "istanbul": "^0.4.4",
+    "mocha": "^3.0.1",
+    "sinon": "^1.17.5"
+  }
+}
