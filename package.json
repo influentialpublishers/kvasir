@@ -41,7 +41,9 @@
     }
   },
   "dependencies": {
-    "must": "^0.13.2"
+    "lodash.startcase": "^4.4.0",
+    "must": "^0.13.2",
+    "require-all": "^2.0.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
