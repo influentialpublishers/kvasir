@@ -19,7 +19,7 @@ const METHODS = [
 , 'update'
 
 // Driver -> PredicateDictionary -> Params -> Record -> Promise Something
-, 'updateWhere'
+, 'updateWhereEq'
 
 // Driver -> Projection -> Promise Array Record
 , 'projectAll'
