@@ -71,6 +71,15 @@ describe('Kvasir Loader (loader.js)', function() {
     })
 
 
+    it('should load folder based modules (index) ', function() {
+
+      console.log(DO)
+      demand(DO.FolderExample).be.an.object()
+      demand(DO.Invalid).be.undefined()
+
+    })
+
+
   })
 
 
