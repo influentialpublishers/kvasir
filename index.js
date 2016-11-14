@@ -18,6 +18,9 @@ const METHODS = [
 // Driver -> Id -> Record -> Promise Id
 , 'update'
 
+// Driver -> PredicateDictionary -> Params -> Record -> Promise Something
+, 'updateWhere'
+
 // Driver -> Projection -> Promise Array Record
 , 'projectAll'
 
