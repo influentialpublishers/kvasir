@@ -36,7 +36,7 @@ describe('kvasir', function() {
     .then((id) => test_domain.getById(test_driver, id))
 
     .then((record) => {
-      
+
       demand(record.id).be.a.string()
       demand(record.foo).eql('bar')
       demand(record.bar).eql('baz')
@@ -46,5 +46,19 @@ describe('kvasir', function() {
 
   })
 
+
+  it('should be able to insert and delete data', function() {
+
+    const test_data = {id: '1', foo: 'xyz' }
+
+    return test_domain.insert(test_driver, test_data)
+
+    .then((id) => test_domain.deleteById(test_driver, id))
+
+    .then((result) => {
+      demand(result).be.true()
+    })
+
+  })
 
 })

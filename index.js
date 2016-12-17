@@ -40,7 +40,7 @@ const METHODS = [
 , 'getById'
 
 // Driver -> String -> Promise Record
-, 'delete'
+, 'deleteById'
 ];
 
 
