@@ -37,7 +37,10 @@ const METHODS = [
 , 'getAll'
 
 // Driver -> String -> Promise Record
-, 'getById' 
+, 'getById'
+
+// Driver -> String -> Promise Record
+, 'deleteById'
 ];
 
 
